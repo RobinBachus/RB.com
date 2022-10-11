@@ -1,0 +1,24 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "server": "nodemon -i '*.json'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "RB",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^5.0.1",
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.19"
+  },
+  "devDependencies": {
+    "@types/chalk": "^2.2.0",
+    "@types/mysql": "^2.15.21",
+    "cors": "^2.8.5"
+  }
+}
