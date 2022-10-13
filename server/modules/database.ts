@@ -1,5 +1,3 @@
-// TODO: Setup user database
-
 import { createPool, Pool } from "mysql";
 import { DATA_SOURCES } from "./../vars.config";
 import { Queries } from "./sql/queries";
@@ -37,8 +35,8 @@ const addUser = async (pool: Pool, email: string , name: string, highScore?: num
   }
 };
 
-const getUser = async (pool: Pool, name: string) => {
-  return execute(pool, Queries.GetUser, [name]);
+const getUser = async (pool: Pool, email: string) => {
+  return execute(pool, Queries.GetUser, [email]);
 };
 
 const updateUser = async (pool: Pool, name: string, highScore: number) => {

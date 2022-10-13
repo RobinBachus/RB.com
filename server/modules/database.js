@@ -1,5 +1,4 @@
 "use strict";
-// TODO: Setup user database
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -76,9 +75,9 @@ var addUser = function (pool, email, name, highScore) { return __awaiter(void 0,
         }
     });
 }); };
-var getUser = function (pool, name) { return __awaiter(void 0, void 0, void 0, function () {
+var getUser = function (pool, email) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
-        return [2 /*return*/, execute(pool, queries_1.Queries.GetUser, [name])];
+        return [2 /*return*/, execute(pool, queries_1.Queries.GetUser, [email])];
     });
 }); };
 var updateUser = function (pool, name, highScore) { return __awaiter(void 0, void 0, void 0, function () {

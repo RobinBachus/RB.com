@@ -1,7 +1,10 @@
+// TODO: Comment Code
+
 const express = require("express");
 const cors = require("cors");
 const auth = require("./modules/auth");
 const db = require("./modules/database");
+import {} from "./modules/database";
 const app = express();
 
 const port = 8000;
@@ -37,7 +40,7 @@ app.post("/api", async (request: any, response: any) => {
       statusCode: 200,
     });
   } else if (req.type === "getHighScore") {
-    let highScore;
+    let highScore: number = 0;
     if (req.user !== "Null") {
       let userDB = await db.getUser(pool, req.user);
       try {
@@ -50,19 +53,19 @@ app.post("/api", async (request: any, response: any) => {
     response.json({
       status: "Success",
       statusCode: 200,
-      highScore: highScore || 0,
+      highScore: highScore,
     });
-  } else {
-    let user;
+  } else if (req.type === "userVerification") {
+    let user: { name: string; highScore: number };
     // const pool = await db.dbCreatePool();
     const userInfo = await auth.getUserInfo(await req.code);
-    log(userInfo);
+    console.log(userInfo);
     try {
-      let userDB = await db.getUser(pool, userInfo.given_name);
-      console.log(userDB);
+      let userDB = await db.getUser(pool, userInfo.email);
+      console.log(await userDB);
       if (!userDB.length) {
         console.log(
-          "addUserSucces: " + (await db.addUser(pool, userInfo.given_name))
+          "addUserSucces: " + (await db.addUser(pool, userInfo.email, userInfo.given_name))
         );
         user = { name: userInfo.given_name, highScore: 0 };
       } else {
@@ -71,6 +74,7 @@ app.post("/api", async (request: any, response: any) => {
       }
     } catch (error) {
       console.log(error);
+      user = { name: "Null", highScore: 0 };
     }
     response.json({
       status: "Success",
@@ -79,7 +83,7 @@ app.post("/api", async (request: any, response: any) => {
     });
   }
 
-  function log(msg:string) {
+  function log(msg: string) {
     if (process.argv[2] === "-v") {
       console.log("[V]: " + msg);
     }

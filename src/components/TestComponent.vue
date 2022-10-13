@@ -28,7 +28,7 @@ export default defineComponent({
         console.log(await json);
       }
     },
-    async makePOSTRequest(data: Record<string, unknown>) {
+    async makePOSTRequest(data: { type: string; [args: string]: any }) {
       const options = {
         method: "POST",
         headers: {
@@ -50,7 +50,10 @@ export default defineComponent({
   async setup() {
     const highScore = await getHighScore();
 
-    async function makePOSTRequest(data: Record<string, unknown>) {
+    async function makePOSTRequest(data: {
+      type: string;
+      [args: string]: any;
+    }) {
       const options = {
         method: "POST",
         headers: {
@@ -74,12 +77,6 @@ export default defineComponent({
     }
 
     return { highScore };
-  },
-
-  computed: {
-    highScore() {
-      return this.$store.state.highScore;
-    },
   },
 });
 </script>

@@ -8,14 +8,14 @@ const store = useStore();
 // --> https://yobaji.github.io/vue3-google-login/#coderesponsecallback
 const callback: CallbackTypes.CodeResponseCallback = async (response) => {
   console.log("Authorisation code", response.code);
-  const user = await makePOSTRequest({ code: response.code });
+  const user = await makePOSTRequest({ type: "userVerification", code: response.code });
   const userData = await user.json();
   console.log(userData);
   document.getElementById("login-btn-text")!.innerHTML = userData.user.name;
   setHighScore(userData.user.highScore);
 };
 
-const makePOSTRequest = async (data: Record<string, unknown>) => {
+const makePOSTRequest = async (data: {type:string, [args: string]: any;}) => {
   const options = {
     method: "POST",
     headers: {

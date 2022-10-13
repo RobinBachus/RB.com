@@ -6,7 +6,7 @@
     "server": "nodemon -w server server/server.js -e js",
     "dev-server": " concurrently \"vite\" \"nodemon -w ./Server/server.js ./Server/server.js \"",
     "host": " concurrently \"vite --port 5173 --host\" \"nodemon -w ./Server/server.js ./Server/server.js \"",
-    "tsc": "tsc -w Server/modules/auth.ts Server/modules/database.ts",
+    "tsc": "tsc -w Server/modules/auth.ts Server/modules/database.ts Server/server.ts",
     "build": "run-p type-check build-only",
     "preview": "vite preview --port 4173",
     "build-only": "vite build",
