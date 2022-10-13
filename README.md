@@ -13,6 +13,6 @@
 ### v0.0.1
 
 - uploaded project to Github
-- converted ´server.js´ to ´typescript´
+- converted server.js to typescript
 - cleaned up certain files
 - updated README
